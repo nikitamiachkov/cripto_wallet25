@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import com.example.kaban2.Domain.State.SignUpState
 import com.example.kaban2.Domain.Utils.isEmailValid
 import com.example.kaban2.Domain.models.Profile
+import com.example.kaban2.Domain.models.Resources
 import com.example.kaban2.Navigation.NavigationRoutes
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
@@ -16,6 +17,7 @@ import com.example.kaban2.Domain.Constant.supabase
 import com.example.kaban2.Domain.State.ResultState
 import io.github.jan.supabase.auth.exception.AuthRestException
 import io.github.jan.supabase.postgrest.from
+import kotlinx.atomicfu.TraceBase.None
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -59,13 +61,25 @@ class SignUpViewModel:ViewModel() {
                     }
                     Log.d("SignUp", "Success")
 
+                    val id = supabase.auth.currentUserOrNull()?.id
+
                     val user = Profile(
-                        user_id = supabase.auth.currentUserOrNull()?.id,
+                        user_id = id,
                         _uiState.value.username,
                         _uiState.value.surname,
                         _uiState.value.dateBirth)
 
                     supabase.from("profile").insert(user)
+                    //Log.d("SignUp", "Success2")
+
+                    val res = Resources(
+                        user_id = id,
+                        0.0)
+
+
+                    supabase.from("resources").insert(res)
+                    //Log.d("SignUp", "Success3")
+
                     _resultState.value = ResultState.Success("Success")
 
 
