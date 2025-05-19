@@ -59,10 +59,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Supabase
+    //Supabase
     implementation(platform(libs.bom))
     implementation(libs.postgrest.kt)
     implementation(libs.auth.kt)
     implementation(libs.realtime.kt)
+    implementation (libs.storage.kt)
 
     //сказали
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
@@ -77,4 +79,11 @@ dependencies {
 
     //ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //LiveData
+    implementation (libs.androidx.runtime.livedata)
+
 }

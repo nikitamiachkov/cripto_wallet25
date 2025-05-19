@@ -1,9 +1,10 @@
 package com.example.kaban2.Domain
 
 import io.github.jan.supabase.auth.Auth
-import io.github.jan.supabase.auth.status.SessionSource.Storage
+//import io.github.jan.supabase.auth.status.SessionSource.Storage
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.storage.Storage
 
 
 /**
@@ -17,6 +18,6 @@ object Constant {
     ) {
         install(Postgrest)
         install(Auth)
-        //install(Storage)
+        install(Storage)
     }
 }
