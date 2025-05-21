@@ -79,6 +79,7 @@ class MainScreenViewModel : ViewModel() {
 
                 balance = profileResult.balance_in_rubles
             } catch (_ex: AuthRestException) {
+                Log.d("SignUp", "lox")
             }
 
         }
@@ -111,6 +112,7 @@ class MainScreenViewModel : ViewModel() {
                 username = profileResult.username
             } catch (_ex: AuthRestException) {
                 username = "Noy"
+                Log.d("SignUp", "lox")
             }
 
             try {
