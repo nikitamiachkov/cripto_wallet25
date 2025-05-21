@@ -115,21 +115,6 @@ fun BuyScreen(navController: NavHostController, mapScreenViewModel: BuyScreenVie
             }
 
             is ResultState.Success -> {
-                LazyRow {
-                    /*items(1) { index ->
-                         CategoryItem(
-                             category = books.value[index].title,
-                             isSelected = selectedCategory.intValue == books.value[index].id,
-                             onClick = {
-                                 selectedCategory.intValue = books.value[index].id
-                                 mapScreenViewModel.filterList(
-                                     textSearch.value,
-                                     selectedCategory.intValue
-                                 )
-                             }
-                         )
-                     }*/
-                }
                 LazyColumn {
                     items(kolvo) { index ->
                         CardCripto(
