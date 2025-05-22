@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +39,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.LiveData
 import com.example.kaban2.Domain.models.Cripto
+import com.example.kaban2.Domain.models.User_cripto
+import com.example.kaban2.Screens.Components.CardCriptoViewModel
 
 
 @Composable
@@ -46,10 +50,15 @@ fun MainScreen(navController: NavHostController) {
     val innerNavController = rememberNavController()
     val viewModel: MainScreenViewModel = viewModel()
 
+    val viewModel2: CardCriptoViewModel = viewModel()
+
+    val criptoList by viewModel2.criptoList.collectAsState()
+
     val username = viewModel.username
     val balance = viewModel.balance
 
-    val cripto = viewModel.cripto
+    var cripto = viewModel.cripto
+    //cripto = criptoList
     val kolvo = viewModel.kolvo
 
     Scaffold(
@@ -130,6 +139,7 @@ fun MainScreen(navController: NavHostController) {
                                         )
                                     }
                                 }
+
                             }
                         }
 
