@@ -85,7 +85,7 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
 
-    //LiveData
+    //LiveData Дата
     implementation (libs.androidx.runtime.livedata)
 
 }
