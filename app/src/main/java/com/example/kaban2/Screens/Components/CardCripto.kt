@@ -5,15 +5,18 @@ import android.util.Log
 //import android.util.Size
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -32,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
@@ -40,12 +44,15 @@ import com.example.kaban2.Domain.models.Cripto
 import com.example.kaban2.R
 
 import coil.size.Size
+import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
 
 
 @Composable
 fun CardCripto(book: Cripto,
-             getUrl: suspend  (String) -> String,
-             navController: NavController) {
+               getUrl: suspend  (String) -> String,
+               navController: NavController) {
+
+    val viewModel: CardCriptoViewModel = viewModel()
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }
@@ -54,10 +61,10 @@ fun CardCripto(book: Cripto,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            /*.clickable {
-                // при клике переходим на экран с фоном
-                navController.navigate("main/${Uri.encode(imageUrl)}")
-            }*/
+        /*.clickable {
+            // при клике переходим на экран с фоном
+            navController.navigate("main/${Uri.encode(imageUrl)}")
+        }*/
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -120,15 +127,44 @@ fun CardCripto(book: Cripto,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Курс: "+book.cost.toString(),
+                    text = "Курс: ${book.cost}",
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Вчерашний курс: "+book.last_cost.toString(),
+                    text = "Вчерашний курс: ${book.last_cost}",
                     fontWeight = FontWeight.Bold
                 )
             }
+        }
 
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    // Логика покупки
+                    viewModel.buyCripto(book)
+                    viewModel.triggerReload()
+                    Log.d("CardCripto", "Купить: ${book.name}")
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("Купить")
+            }
+
+            Button(
+                onClick = {
+                    // Логика продажи
+                    viewModel.sellCripto(book)
+                    Log.d("CardCripto", "Продать: ${book.name}")
+                },
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("Продать")
+            }
         }
     }
 }
