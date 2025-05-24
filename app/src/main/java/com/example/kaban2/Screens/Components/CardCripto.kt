@@ -55,6 +55,7 @@ fun CardCripto(book: Cripto,
              navController: NavController) {
 
     val viewModel: CardCriptoViewModel = viewModel()
+    val viewModel1: MainScreenViewModel = viewModel()
 
     val context = LocalContext.current
 
@@ -162,6 +163,7 @@ fun CardCripto(book: Cripto,
                     // Логика покупки
                     viewModel.buyCripto(book)
                     viewModel.triggerReload()
+                    viewModel1.triggerReload()
                     Log.d("CardCripto", "Купить: ${book.name}")
                 },
                 modifier = Modifier.weight(1f)
@@ -173,6 +175,7 @@ fun CardCripto(book: Cripto,
                 onClick = {
                     // Логика продажи
                     viewModel.sellCripto(book)
+                    viewModel1.triggerReload()
                     Log.d("CardCripto", "Продать: ${book.name}")
                 },
                 modifier = Modifier.weight(1f)

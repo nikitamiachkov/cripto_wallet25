@@ -84,7 +84,7 @@ fun CardCriptoForMain(book: Cripto?,
                 // Если изображение загружается, показываем индикатор загрузки
                 Box(
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp))
                 ) {
                     CircularProgressIndicator()
@@ -98,7 +98,7 @@ fun CardCriptoForMain(book: Cripto?,
                     painter = painterResource(R.drawable.icon),
                     contentDescription = book?.name,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
 
                     contentScale = ContentScale.Crop
@@ -111,7 +111,7 @@ fun CardCriptoForMain(book: Cripto?,
                     painter = imageState.painter,
                     contentDescription = book?.name,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
                     contentScale = ContentScale.Crop
                 )

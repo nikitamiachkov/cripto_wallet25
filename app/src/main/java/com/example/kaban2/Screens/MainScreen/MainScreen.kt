@@ -49,22 +49,24 @@ import com.example.kaban2.Screens.Components.CardCriptoViewModel
 fun MainScreen(navController: NavHostController) {
     val innerNavController = rememberNavController()
     val viewModel: MainScreenViewModel = viewModel()
-
     val viewModel2: CardCriptoViewModel = viewModel()
 
-    val criptoList by viewModel2.criptoList.collectAsState()
+    val reloadTrigger by viewModel.reload.collectAsState()
 
+    LaunchedEffect(reloadTrigger) {
+        viewModel.refreshData()
+    }
+
+    val criptoList by viewModel2.criptoList.collectAsState()
     val username = viewModel.username
     val balance = viewModel.balance
-
-    var cripto = viewModel.cripto
-    //cripto = criptoList
+    val cripto = viewModel.cripto
     val kolvo = viewModel.kolvo
 
     Scaffold(
-        containerColor = Color(0xFF121212), // Тёмный фон всего экрана
+        containerColor = Color(0xFF121212),
         bottomBar = {
-            DarkBottomNavigationBar(innerNavController)
+            DarkBottomNavigationBar(innerNavController) // передаём navController внутрь
         }
     ) { innerPadding ->
         NavHost(
@@ -73,86 +75,13 @@ fun MainScreen(navController: NavHostController) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Main.route) {
-                Surface(
-                    color = Color(0xFF121212),
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        // Заголовок
-                        Text(
-                            text = "Главная страница",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = Color.White,
-                            modifier = Modifier.align(Alignment.Start)
-                        )
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        // Аватар + имя + баланс
-                        UserProfileHeader(username = username, balance = balance)
-
-                        Spacer(modifier = Modifier.height(68.dp))
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(Color.DarkGray) // Задали тёмный фон
-                                .padding(top = 10.dp),
-                            verticalArrangement = Arrangement.Top,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "Ваши активы",
-                                color = Color.White,           // Белый цвет текста
-                                fontWeight = FontWeight.Bold, // Жирный шрифт
-                                style = MaterialTheme.typography.headlineSmall // Размер шрифта заголовка H5
-                            )
-
-                            Spacer(modifier = Modifier.height(8.dp)) // Небольшой отступ между текстом и списком
-
-                            LazyColumn {
-                                Log.d("buck", kolvo.toString())
-                                items(kolvo) { index ->
-                                    var currentCrypto by remember { mutableStateOf<Cripto?>(null) }
-
-                                    LaunchedEffect(key1 = Unit) {
-                                        currentCrypto = async {
-                                            viewModel.getCripto(cripto.value?.get(index)?.cripto ?: index)
-                                        }.await()
-                                    }
-
-                                    currentCrypto?.let { cryptoItem ->
-                                        CardCriptoForMain(
-                                            book = cryptoItem,
-                                            quantity = cripto.value?.get(index)?.quantity ?: 0,
-                                            getUrl = { imageName  ->
-                                                viewModel.getUrlImage(cryptoItem.image) // ✅ можно передавать suspend
-                                            },
-                                            navController = navController
-                                        )
-                                    }
-                                }
-
-                            }
-                        }
-
-
-
-
-
-                    }
-                }
+               MainScreen2(innerNavController)
             }
+
             composable(BottomNavItem.Buy.route) {
                 BuyScreen(innerNavController)
             }
+
             composable(BottomNavItem.Rate.route) {
                 RateScreen(innerNavController)
             }

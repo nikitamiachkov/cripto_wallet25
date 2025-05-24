@@ -34,12 +34,21 @@ fun DarkBottomNavigationBar(navController: NavHostController) {
                 label = { Text(item.label, color = Color.White) },
                 selected = currentRoute == item.route,
                 onClick = {
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+                    val currentRoute = navController.currentDestination?.route
+                    if (currentRoute != item.route) {
+                        navController.navigate(item.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
+                    } else {
+                        // Если пользователь нажал на уже выбранный пункт (например, Main), принудительно перезапускаем его
+                        navController.navigate(item.route) {
+                            popUpTo(item.route) { inclusive = true }
+                            launchSingleTop = true
+                        }
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(

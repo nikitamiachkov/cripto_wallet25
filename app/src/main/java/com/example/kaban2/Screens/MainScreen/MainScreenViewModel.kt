@@ -31,6 +31,22 @@ class MainScreenViewModel : ViewModel() {
     var username by mutableStateOf<String?>(null)
         public set
 
+    private val _reload = MutableStateFlow(false)
+    val reload: StateFlow<Boolean> = _reload
+
+    fun triggerReload() {
+        _reload.value = !_reload.value
+    }
+
+    fun refreshData() {
+        viewModelScope.launch {
+            // Здесь вызываем всю нужную логику обновления
+            // например: загрузка username, balance, cripto, kolvo и т.д.
+            loadUserData()
+            //loadCriptoList()
+        }
+    }
+
     /*var kaban_level by mutableStateOf<String>("none")
         public set
 

@@ -4,11 +4,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kaban2.Domain.Constant.supabase
 import com.example.kaban2.Domain.models.Cripto
 import com.example.kaban2.Domain.models.Profile
 import com.example.kaban2.Domain.models.Resources
 import com.example.kaban2.Domain.models.User_cripto
+import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
@@ -83,13 +85,30 @@ class CardCriptoViewModel : ViewModel() {
                             .select(columns = Columns.list("id", "cripto", "quantity", "purchase_price","user_id")) {
                                 filter {
                                     eq("user_id", userId.toString())
+                                    eq("cripto", cripto.id)
                                 }}
-                            .decodeList<User_cripto>()
+                            .decodeSingle<User_cripto>()
 
-                        val rnds = (100..10000000).random()
+                        if (profileResult3.quantity > 0) {
+                            Log.d("quantity", profileResult3.quantity.toString())
+                            supabase.from("users_have_cryptocurrency").update(
+                                {
+                                    set("quantity", profileResult3.quantity + 1)
+                                }
+                            ) {
+                                filter {
+                                    eq("user_id", userId.toString())
+                                    eq("cripto", cripto.id)
+                                }
+                            }
+                        } else {
+                            val rnds = (100..10000000).random()
 
-                        val user_cripto = User_cripto(rnds, cripto.id, 1, cripto.cost, userId.toString())
-                        supabase.from("users_have_cryptocurrency").insert(user_cripto)
+                            val user_cripto = User_cripto(rnds, cripto.id, 1, cripto.cost, userId.toString())
+                            supabase.from("users_have_cryptocurrency").insert(user_cripto)
+                        }
+
+
 
                         val profileResult4 = supabase.from("users_have_cryptocurrency")
                             .select(columns = Columns.list("id", "cripto", "quantity", "purchase_price","user_id")) {
@@ -108,7 +127,20 @@ class CardCriptoViewModel : ViewModel() {
 
 
 
+
             } catch (e: Exception) {
+
+                try {
+
+                        val rnds = (100..10000000).random()
+
+                        val user_cripto = User_cripto(rnds, cripto.id, 1, cripto.cost, userId.toString())
+                        supabase.from("users_have_cryptocurrency").insert(user_cripto)
+
+                } catch (e: Exception) { Log.e("ViewModel", "Ошибка покупки2", e) }
+
+
+
                 Log.e("ViewModel", "Ошибка покупки", e)
             } finally {
                 _loading.value = false
@@ -153,25 +185,33 @@ class CardCriptoViewModel : ViewModel() {
                         }
                     }
 
-                    val profileResult3 = supabase.from("users_have_cryptocurrency")
-                        .select(columns = Columns.list("id", "cripto", "quantity", "purchase_price","user_id")) {
+                    if (profileResult86.quantity == 1) {
+                        supabase.from("users_have_cryptocurrency").delete {
                             filter {
                                 eq("user_id", userId.toString())
-                            }}
-                        .decodeList<User_cripto>()
+                                eq("cripto", cripto.id)
+
+                            }
+                        }
+                    } else {
+                        supabase.from("users_have_cryptocurrency").update(
+                            {
+                                set("quantity", profileResult86.quantity - 1)
+                            }
+                        ) {
+                            filter {
+                                eq("user_id", userId.toString())
+                                eq("cripto", cripto.id)
+                            }
+                        }
+                    }
 
                     //val rnds = (100..10000000).random()
 
                     //val user_cripto = User_cripto(rnds, cripto.id, 1, cripto.cost, userId.toString())
                     //supabase.from("users_have_cryptocurrency").insert(user_cripto)
 
-                    supabase.from("users_have_cryptocurrency").delete {
-                        filter {
-                            eq("user_id", userId.toString())
-                            eq("cripto", cripto.id)
 
-                        }
-                    }
 
                     val profileResult4 = supabase.from("users_have_cryptocurrency")
                         .select(columns = Columns.list("id", "cripto", "quantity", "purchase_price","user_id")) {
