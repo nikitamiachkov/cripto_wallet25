@@ -2,6 +2,7 @@ package com.example.kaban2.Screens.Components
 
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 //import android.util.Size
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -35,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImagePainter
@@ -53,6 +55,18 @@ fun CardCripto(book: Cripto,
              navController: NavController) {
 
     val viewModel: CardCriptoViewModel = viewModel()
+
+    val context = LocalContext.current
+
+    // Слушаем сообщения из ViewModel и показываем Toast
+    LaunchedEffect(Unit) {
+        viewModel.userMessage.collect { message ->
+            message?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                viewModel.clearMessage()
+            }
+        }
+    }
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }
