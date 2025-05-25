@@ -55,9 +55,7 @@ fun SignInScreen(navController: NavHostController, signInViewModel: SignInViewMo
         TextFieldEmail(value = uiState.email, error = uiState.errorEmail,
             onvaluechange = { it -> signInViewModel.updateState(uiState.copy(email = it)) })
         Spacer(Modifier.height(10.dp))
-        TextFieldPassword(uiState.password) {
-            signInViewModel.updateState(uiState.copy(password = it))
-        }
+        TextFieldPassword(value = uiState.password, onvaluechange = { it -> signInViewModel.updateState(uiState.copy(password = it)) }, "пароль" )
         Spacer(Modifier.height(10.dp))
 
         //Этот when-выражение обрабатывает различные состояния (ResultState) операции входа
