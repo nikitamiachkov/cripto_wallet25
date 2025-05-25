@@ -45,8 +45,8 @@ import coil.size.Size
 @Composable
 fun CardCriptoForMain(book: Cripto?,
                       quantity: Int,
-             getUrl: suspend  (String) -> String,
-             navController: NavController) {
+                      getUrl: suspend  (String) -> String,
+                      navController: NavController) {
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }
@@ -56,11 +56,11 @@ fun CardCriptoForMain(book: Cripto?,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            /*.clickable {
-                // при клике переходим на экран с фоном
-                Log.d("buck", book.toString())
-                //navController.navigate("main/${Uri.encode(imageUrl)}")
-            }*/
+        /*.clickable {
+            // при клике переходим на экран с фоном
+            Log.d("buck", book.toString())
+            //navController.navigate("main/${Uri.encode(imageUrl)}")
+        }*/
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -84,7 +84,7 @@ fun CardCriptoForMain(book: Cripto?,
                 // Если изображение загружается, показываем индикатор загрузки
                 Box(
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp))
                 ) {
                     CircularProgressIndicator()
@@ -98,7 +98,7 @@ fun CardCriptoForMain(book: Cripto?,
                     painter = painterResource(R.drawable.icon),
                     contentDescription = book?.name,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
 
                     contentScale = ContentScale.Crop
@@ -111,7 +111,7 @@ fun CardCriptoForMain(book: Cripto?,
                     painter = imageState.painter,
                     contentDescription = book?.name,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
                     contentScale = ContentScale.Crop
                 )
