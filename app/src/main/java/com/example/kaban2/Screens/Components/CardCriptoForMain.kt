@@ -45,8 +45,8 @@ import coil.size.Size
 @Composable
 fun CardCriptoForMain(book: Cripto?,
                       quantity: Int,
-             getUrl: suspend  (String) -> String,
-             navController: NavController) {
+                      getUrl: suspend  (String) -> String,
+                      navController: NavController) {
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }
@@ -56,11 +56,11 @@ fun CardCriptoForMain(book: Cripto?,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            /*.clickable {
-                // при клике переходим на экран с фоном
-                Log.d("buck", book.toString())
-                //navController.navigate("main/${Uri.encode(imageUrl)}")
-            }*/
+        /*.clickable {
+            // при клике переходим на экран с фоном
+            Log.d("buck", book.toString())
+            //navController.navigate("main/${Uri.encode(imageUrl)}")
+        }*/
     ) {
         Row(
             modifier = Modifier.padding(16.dp),

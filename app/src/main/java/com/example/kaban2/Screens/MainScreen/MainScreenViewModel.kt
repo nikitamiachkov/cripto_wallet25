@@ -160,20 +160,20 @@ class MainScreenViewModel : ViewModel() {
     }
 
     suspend fun getCripto(id: Int):Cripto {
-            val profileResult = supabase.from("cryptocurrency")
-                .select(
-                    columns = Columns.list(
-                        "id", "name", "cost","image","last_cost"
-                    )
-                ) {
-                    filter {
-                        eq("id", id)
-                    }
+        val profileResult = supabase.from("cryptocurrency")
+            .select(
+                columns = Columns.list(
+                    "id", "name", "cost","image","last_cost"
+                )
+            ) {
+                filter {
+                    eq("id", id)
                 }
-                .decodeSingle<Cripto>()
+            }
+            .decodeSingle<Cripto>()
 
 
-            return profileResult
+        return profileResult
 
     }
 

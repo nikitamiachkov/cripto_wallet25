@@ -76,16 +76,24 @@ fun SignUpScreen(navController: NavHostController, sigUpViewModel: SignUpViewMod
         TextFieldEmail(uiState.email,uiState.isEmailError) { sigUpViewModel.updateState(uiState.copy(email = it)) }
         Spacer(Modifier.height(10.dp))
 
-        TextFieldStandart(uiState.username) { sigUpViewModel.updateState(uiState.copy(username = it)) }
+        TextFieldStandart(value = uiState.username, onvaluechange = { it -> sigUpViewModel.updateState(uiState.copy(username = it)) }, "имя")
         Spacer(Modifier.height(10.dp))
 
-        TextFieldStandart(uiState.surname) { sigUpViewModel.updateState(uiState.copy(surname = it)) }
+        TextFieldStandart(
+            value = uiState.surname,
+            onvaluechange = { it -> sigUpViewModel.updateState(uiState.copy(surname = it)) },
+            "фамилия"
+        )
         Spacer(Modifier.height(10.dp))
 
-        TextFieldPassword(uiState.password) { sigUpViewModel.updateState(uiState.copy(password = it)) }
+        TextFieldPassword(
+            value = uiState.password,
+            onvaluechange = { it -> sigUpViewModel.updateState(uiState.copy(password = it)) },"пароль")
         Spacer(Modifier.height(10.dp))
 
-        TextFieldPassword(uiState.confirmPassword) { sigUpViewModel.updateState(uiState.copy(confirmPassword = it)) }
+        TextFieldPassword(
+            value = uiState.confirmPassword,
+            onvaluechange = { it -> sigUpViewModel.updateState(uiState.copy(confirmPassword = it)) }, "подтвердите пароль")
         Spacer(Modifier.height(10.dp))
 
         val mDatePickerDialog = DatePickerDialog(

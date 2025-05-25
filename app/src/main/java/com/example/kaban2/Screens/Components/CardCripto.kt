@@ -51,8 +51,23 @@ import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
 
 @Composable
 fun CardCripto(book: Cripto,
-             getUrl: suspend  (String) -> String,
-             navController: NavController) {
+               getUrl: suspend  (String) -> String,
+               navController: NavController) {
+
+    val viewModel: CardCriptoViewModel = viewModel()
+    val viewModel1: MainScreenViewModel = viewModel()
+
+    val context = LocalContext.current
+
+    // Слушаем сообщения из ViewModel и показываем Toast
+    LaunchedEffect(Unit) {
+        viewModel.userMessage.collect { message ->
+            message?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                viewModel.clearMessage()
+            }
+        }
+    }
 
     val viewModel: CardCriptoViewModel = viewModel()
     val viewModel1: MainScreenViewModel = viewModel()
@@ -76,10 +91,10 @@ fun CardCripto(book: Cripto,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            /*.clickable {
-                // при клике переходим на экран с фоном
-                navController.navigate("main/${Uri.encode(imageUrl)}")
-            }*/
+        /*.clickable {
+            // при клике переходим на экран с фоном
+            navController.navigate("main/${Uri.encode(imageUrl)}")
+        }*/
     ) {
         Row(
             modifier = Modifier.padding(16.dp),

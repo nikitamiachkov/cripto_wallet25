@@ -64,66 +64,66 @@ fun MainScreen2(navController: NavHostController) {
     val kolvo = viewModel.kolvo
 
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Главная страница",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = Color.White,
-                            modifier = Modifier.align(Alignment.Start)
-                        )
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Главная страница",
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.White,
+            modifier = Modifier.align(Alignment.Start)
+        )
 
-                        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-                        UserProfileHeader(username = username, balance = balance)
+        UserProfileHeader(username = username, balance = balance)
 
-                        Spacer(modifier = Modifier.height(68.dp))
+        Spacer(modifier = Modifier.height(68.dp))
 
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(Color.DarkGray)
-                                .padding(top = 10.dp),
-                            verticalArrangement = Arrangement.Top,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "Ваши активы",
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.headlineSmall
-                            )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.DarkGray)
+                .padding(top = 10.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Ваши активы",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.headlineSmall
+            )
 
-                            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-                            LazyColumn {
-                                items(kolvo) { index ->
-                                    var currentCrypto by remember { mutableStateOf<Cripto?>(null) }
+            LazyColumn {
+                items(kolvo) { index ->
+                    var currentCrypto by remember { mutableStateOf<Cripto?>(null) }
 
-                                    LaunchedEffect(Unit) {
-                                        currentCrypto = async {
-                                            viewModel.getCripto(cripto.value?.get(index)?.cripto ?: index)
-                                        }.await()
-                                    }
-
-                                    currentCrypto?.let { cryptoItem ->
-                                        CardCriptoForMain(
-                                            book = cryptoItem,
-                                            quantity = cripto.value?.get(index)?.quantity ?: 0,
-                                            getUrl = {
-                                                viewModel.getUrlImage(cryptoItem.image)
-                                            },
-                                            navController = navController
-                                        )
-                                    }
-                                }
-                            }
-                        }
+                    LaunchedEffect(Unit) {
+                        currentCrypto = async {
+                            viewModel.getCripto(cripto.value?.get(index)?.cripto ?: index)
+                        }.await()
                     }
+
+                    currentCrypto?.let { cryptoItem ->
+                        CardCriptoForMain(
+                            book = cryptoItem,
+                            quantity = cripto.value?.get(index)?.quantity ?: 0,
+                            getUrl = {
+                                viewModel.getUrlImage(cryptoItem.image)
+                            },
+                            navController = navController
+                        )
+                    }
+                }
+            }
+        }
+    }
 
 
 

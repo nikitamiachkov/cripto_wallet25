@@ -58,10 +58,10 @@ fun CardRate(username: String?,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            /*.clickable {
-                // при клике переходим на экран с фоном
-                navController.navigate("main/${Uri.encode(imageUrl)}")
-            }*/
+        /*.clickable {
+            // при клике переходим на экран с фоном
+            navController.navigate("main/${Uri.encode(imageUrl)}")
+        }*/
     ) {
 
         Row(
