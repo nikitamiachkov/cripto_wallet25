@@ -2,22 +2,18 @@ package com.example.kaban2.Screens.Components
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 //import android.util.Size
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -36,8 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
@@ -46,31 +40,17 @@ import com.example.kaban2.Domain.models.Cripto
 import com.example.kaban2.R
 
 import coil.size.Size
-import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
 
 
 @Composable
-fun CardCripto(book: Cripto,
-               getUrl: suspend  (String) -> String,
-               navController: NavController) {
-
-    val viewModel: CardCriptoViewModel = viewModel()
-    val viewModel1: MainScreenViewModel = viewModel()
-
-    val context = LocalContext.current
-
-    // Слушаем сообщения из ViewModel и показываем Toast
-    LaunchedEffect(Unit) {
-        viewModel.userMessage.collect { message ->
-            message?.let {
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-                viewModel.clearMessage()
-            }
-        }
-    }
+fun CardCriptoForMain(book: Cripto?,
+                      quantity: Int,
+                      getUrl: suspend  (String) -> String,
+                      navController: NavController) {
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }
+    Log.d("buck", book.toString())
 
     Card(
         modifier = Modifier
@@ -78,7 +58,8 @@ fun CardCripto(book: Cripto,
             .fillMaxWidth()
         /*.clickable {
             // при клике переходим на экран с фоном
-            navController.navigate("main/${Uri.encode(imageUrl)}")
+            Log.d("buck", book.toString())
+            //navController.navigate("main/${Uri.encode(imageUrl)}")
         }*/
     ) {
         Row(
@@ -93,14 +74,17 @@ fun CardCripto(book: Cripto,
 
             // Запускаем эффект, который обновляет imageUrl при изменении book
             LaunchedEffect(book) {
-                imageUrl = getUrl(book.image)
+                imageUrl = getUrl(book?.image ?: "https://cjljxpfssrgpwtwzxaln.supabase.co/storage/v1/object/public/logocripto//kaban12.png")
+                //Log.d("buck", book.toString())
             }
+
+
             // Проверяем состояние загрузки изображения
             if (imageState is AsyncImagePainter.State.Loading) {
                 // Если изображение загружается, показываем индикатор загрузки
                 Box(
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp))
                 ) {
                     CircularProgressIndicator()
@@ -112,9 +96,9 @@ fun CardCripto(book: Cripto,
                 Image(
 
                     painter = painterResource(R.drawable.icon),
-                    contentDescription = book.name,
+                    contentDescription = book?.name,
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
 
                     contentScale = ContentScale.Crop
@@ -125,9 +109,9 @@ fun CardCripto(book: Cripto,
                 Image(
 
                     painter = imageState.painter,
-                    contentDescription = book.name,
+                    contentDescription = book?.name,
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(40.dp)
                         .clip(RoundedCornerShape(8.dp)),
                     contentScale = ContentScale.Crop
                 )
@@ -137,52 +121,19 @@ fun CardCripto(book: Cripto,
 
             Column {
                 Text(
-                    text = book.name.toString(),
-                    fontSize = 20.sp,
+                    text = book?.name.toString(),
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Курс: ${book.cost}",
+                    text = "Количество: "+quantity,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Вчерашний курс: ${book.last_cost}",
+                    text = "Курс: "+book?.cost.toString(),
                     fontWeight = FontWeight.Bold
                 )
             }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Button(
-                onClick = {
-                    // Логика покупки
-                    viewModel.buyCripto(book)
-                    viewModel.triggerReload()
-                    viewModel1.triggerReload()
-                    Log.d("CardCripto", "Купить: ${book.name}")
-                },
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Купить")
-            }
-
-            Button(
-                onClick = {
-                    // Логика продажи
-                    viewModel.sellCripto(book)
-                    viewModel1.triggerReload()
-                    Log.d("CardCripto", "Продать: ${book.name}")
-                },
-                modifier = Modifier.weight(1f)
-            ) {
-                Text("Продать")
-            }
-
 
         }
     }
