@@ -92,7 +92,7 @@ class CardCriptoViewModel : ViewModel() {
                                 }}
                             .decodeSingle<User_cripto>()
 
-                        if (profileResult3.quantity > 0) {
+if (profileResult3.quantity > 0) {
                             Log.d("quantity", profileResult3.quantity.toString())
                             supabase.from("users_have_cryptocurrency").update(
                                 {
@@ -197,7 +197,7 @@ class CardCriptoViewModel : ViewModel() {
                                     }
                                 }
 
-                                val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
+val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
                                 val cost = cripto.cost + percentChange * 0.03 * cripto.cost
 
                                 supabase.from("cryptocurrency").update(
@@ -301,7 +301,7 @@ class CardCriptoViewModel : ViewModel() {
                             }}
                         .decodeList<User_cripto>()
 
-                    _criptoList.value = profileResult4
+_criptoList.value = profileResult4
                 } else {
                     showMessage("У вас нет такой криптовалюты")
                 }
