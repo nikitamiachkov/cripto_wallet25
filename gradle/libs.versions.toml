@@ -15,7 +15,12 @@ navigationCompose = "2.8.6"
 runtimeLivedata = "1.7.8"
 coilCompose = "2.7.0"
 
+supabase = "2.0.0"
+
 [libraries]
+gotrue-kt = { group = "io.github.jan-tennert.supabase", name = "gotrue-kt", version.ref = "supabase" }
+core = { group = "io.github.jan-tennert.supabase", name = "core", version.ref = "supabase" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }

@@ -69,20 +69,6 @@ fun CardCripto(book: Cripto,
         }
     }
 
-    val viewModel: CardCriptoViewModel = viewModel()
-    val viewModel1: MainScreenViewModel = viewModel()
-
-    val context = LocalContext.current
-
-    // Слушаем сообщения из ViewModel и показываем Toast
-    LaunchedEffect(Unit) {
-        viewModel.userMessage.collect { message ->
-            message?.let {
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-                viewModel.clearMessage()
-            }
-        }
-    }
 
     // Состояние для хранения URL изображения фона
     var imageUrl by remember { mutableStateOf("") }

@@ -67,6 +67,10 @@ dependencies {
     implementation(libs.realtime.kt)
     implementation (libs.storage.kt)
 
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:2.0.0")
+
+
+
     //сказали
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
@@ -87,5 +91,12 @@ dependencies {
 
     //LiveData Дата
     implementation (libs.androidx.runtime.livedata)
+
+    //тесты
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("io.mockk:mockk:1.13.8")
+    //implementation(libs.gotrue.kt)
+    //implementation(libs.core)
+
 
 }

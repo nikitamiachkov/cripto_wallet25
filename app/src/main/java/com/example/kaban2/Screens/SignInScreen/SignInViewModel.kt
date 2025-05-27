@@ -70,4 +70,20 @@ class SignInViewModel : ViewModel() {
             _resultState.value = ResultState.Error( "Ошибка ввода почты")
         }
     }
+
+
+    fun updateEmail(email: String) {
+        _uiState.value = _uiState.value.copy(
+            email = email,
+            errorEmail = !email.contains("@")
+        )
+    }
+
+    fun updatePassword(password: String) {
+        _uiState.value = _uiState.value.copy(
+            password = password,
+            errorPassword = password.length < 6
+        )
+    }
+
 }

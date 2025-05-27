@@ -13,12 +13,15 @@ import com.example.kaban2.Domain.models.User_cripto
 import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class CardCriptoViewModel : ViewModel() {
 
@@ -124,7 +127,45 @@ class CardCriptoViewModel : ViewModel() {
                     }
                 }
 
+                var allBooks: List<Cripto> = supabase.postgrest.from("cryptocurrency").select().decodeList<Cripto>()
 
+                viewModelScope.launch {
+                    while (true) {
+                        delay(5 * 60 * 1000L) // 5 минут в миллисекундах
+
+                        allBooks.forEach { cripto ->
+
+
+                            supabase.from("cryptocurrency").update(
+                                {
+                                    set("last_cost", cripto.cost)
+                                }
+                            ) {
+                                filter {
+                                    eq("id", cripto.id)
+                                }
+                            }
+
+                            val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
+                            val cost = cripto.cost + percentChange * 0.03 * cripto.cost
+
+                            supabase.from("cryptocurrency").update(
+                                {
+                                    set("cost", cost)
+                                }
+                            ) {
+                                filter {
+                                    eq("id", cripto.id)
+                                }
+                            }
+
+
+
+                            //cripto.copy(price = newPrice)  // создаём новую копию с обновлённой ценой
+                        }
+
+                    }
+                }
 
 
 
@@ -136,6 +177,46 @@ class CardCriptoViewModel : ViewModel() {
 
                         val user_cripto = User_cripto(rnds, cripto.id, 1, cripto.cost, userId.toString())
                         supabase.from("users_have_cryptocurrency").insert(user_cripto)
+
+                    var allBooks: List<Cripto> = supabase.postgrest.from("cryptocurrency").select().decodeList<Cripto>()
+
+                    viewModelScope.launch {
+                        while (true) {
+                            delay(5 * 60 * 1000L) // 5 минут в миллисекундах
+
+                            allBooks.forEach { cripto ->
+
+
+                                supabase.from("cryptocurrency").update(
+                                    {
+                                        set("last_cost", cripto.cost)
+                                    }
+                                ) {
+                                    filter {
+                                        eq("id", cripto.id)
+                                    }
+                                }
+
+                                val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
+                                val cost = cripto.cost + percentChange * 0.03 * cripto.cost
+
+                                supabase.from("cryptocurrency").update(
+                                    {
+                                        set("cost", cost)
+                                    }
+                                ) {
+                                    filter {
+                                        eq("id", cripto.id)
+                                    }
+                                }
+
+
+
+                                //cripto.copy(price = newPrice)  // создаём новую копию с обновлённой ценой
+                            }
+
+                        }
+                    }
 
                 } catch (e: Exception) { Log.e("ViewModel", "Ошибка покупки2", e) }
 
@@ -225,7 +306,45 @@ class CardCriptoViewModel : ViewModel() {
                     showMessage("У вас нет такой криптовалюты")
                 }
 
+                var allBooks: List<Cripto> = supabase.postgrest.from("cryptocurrency").select().decodeList<Cripto>()
 
+                viewModelScope.launch {
+                    while (true) {
+                        delay(5 * 60 * 1000L) // 5 минут в миллисекундах
+
+                        allBooks.forEach { cripto ->
+
+
+                            supabase.from("cryptocurrency").update(
+                                {
+                                    set("last_cost", cripto.cost)
+                                }
+                            ) {
+                                filter {
+                                    eq("id", cripto.id)
+                                }
+                            }
+
+                            val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
+                            val cost = cripto.cost + percentChange * 0.03 * cripto.cost
+
+                            supabase.from("cryptocurrency").update(
+                                {
+                                    set("cost", cost)
+                                }
+                            ) {
+                                filter {
+                                    eq("id", cripto.id)
+                                }
+                            }
+
+
+
+                            //cripto.copy(price = newPrice)  // создаём новую копию с обновлённой ценой
+                        }
+
+                    }
+                }
 
 
             } catch (e: Exception) {
@@ -236,4 +355,16 @@ class CardCriptoViewModel : ViewModel() {
             }
         }
     }
+
+    private fun startPriceUpdater() {
+        viewModelScope.launch {
+            while (true) {
+                delay(5 * 60 * 1000L) // 5 минут в миллисекундах
+
+                val percentChange = (Random.nextInt(-5, 6)) ///* 0.03 // от -15% до +15%
+
+            }
+        }
+    }
+
 }

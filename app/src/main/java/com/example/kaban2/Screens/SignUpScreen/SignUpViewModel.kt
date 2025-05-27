@@ -15,6 +15,7 @@ import io.github.jan.supabase.auth.providers.builtin.Email
 import kotlinx.coroutines.launch
 import com.example.kaban2.Domain.Constant.supabase
 import com.example.kaban2.Domain.State.ResultState
+import com.example.kaban2.Domain.Utils.isEmailValid2
 import io.github.jan.supabase.auth.exception.AuthRestException
 import io.github.jan.supabase.postgrest.from
 import kotlinx.atomicfu.TraceBase.None
@@ -43,7 +44,7 @@ class SignUpViewModel:ViewModel() {
     // Важно отметить, что она также немедленно проверяет действительность адреса электронной почты и сбрасывает resultState в Initialized
     fun updateState(newState: SignUpState) {
         _uiState.value = newState
-        _uiState.value.isEmailError = _uiState.value.email.isEmailValid()
+        _uiState.value.isEmailError = _uiState.value.email.isEmailValid2()
         _resultState.value = ResultState.Initialized
     }
 
