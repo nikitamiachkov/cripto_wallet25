@@ -166,6 +166,7 @@ class CardCriptoViewModel : ViewModel() {
 
                     }
                 }
+                showMessage("Покупка совершена успешно!")
 
 
 
@@ -211,7 +212,7 @@ class CardCriptoViewModel : ViewModel() {
                                 }
 
 
-
+                                showMessage("Покупка совершена успешно!")
                                 //cripto.copy(price = newPrice)  // создаём новую копию с обновлённой ценой
                             }
 
