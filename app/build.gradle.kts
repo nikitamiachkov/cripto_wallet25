@@ -43,7 +43,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -98,5 +98,132 @@ dependencies {
     //implementation(libs.gotrue.kt)
     //implementation(libs.core)
 
+
+    // JUnit (4.13.2)
+    testImplementation("junit:junit:4.13.2")
+
+// Kotlin Coroutines Test (1.7.3)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+// Mockito Core (5.2.0)
+    testImplementation("org.mockito:mockito-core:5.2.0")
+
+// Mockito Kotlin (4.1.0)
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+
+// Turbine for Flow testing (1.0.0)
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation(kotlin("test"))
+
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("io.mockk:mockk:1.13.7")
+
+    // Coroutines testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+    // Core testing library for Android components
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    // JUnit Runner for Android instrumentation tests
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Unit testing runner
+    testImplementation("junit:junit:4.13.2")
+
+    // Supabase SDK dependencies
+
+    // If using Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Gson dependency
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // Coroutines support
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Jetpack Architecture Components
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    // Additional Jetpack Modules
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation("androidx.activity:activity-ktx:1.7.2")
+
+    // Google Play Services Authentication
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Performance Optimization
+    debugImplementation("androidx.profileinstaller:profileinstaller:1.3.1")
+
+    // Optional: Firebase Crashlytics
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+
+    implementation("androidx.lifecycle:lifecycle-runtime:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+
+    // Инструменты для Espresso (опционально)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    testImplementation("org.robolectric:robolectric:4.9")
+
+    // JUnit (4.13.2)
+    testImplementation("junit:junit:4.13.2")
+
+// Kotlin Coroutines Test (1.7.3)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+// Mockito Core (5.2.0)
+    testImplementation("org.mockito:mockito-core:5.2.0")
+
+// Mockito Kotlin (4.1.0)
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+
+// Turbine for Flow testing (1.0.0)
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation(kotlin("test"))
+
+
+    // To use the androidx.test.core APIs
+    androidTestImplementation("androidx.test:core:1.6.1")
+    // Kotlin extensions for androidx.test.core
+    androidTestImplementation("androidx.test:core-ktx:1.6.1")
+
+    // To use the androidx.test.espresso
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    // To use the JUnit Extension APIs
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    // Kotlin extensions for androidx.test.ext.junit
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")
+
+    // To use the Truth Extension APIs
+    androidTestImplementation("androidx.test.ext:truth:1.6.0")
+
+    // To use the androidx.test.runner APIs
+    androidTestImplementation("androidx.test:runner:1.6.2")
+
+    // To use android test orchestrator
+    androidTestUtil("androidx.test:orchestrator:1.5.1")
+
+    testImplementation("org.slf4j:slf4j-simple:2.0.7")
+
+    // Для тестирования LiveData
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+
+    // Или если используете AndroidX Test
+    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
+
+    testImplementation("org.robolectric:robolectric:4.9")
 
 }

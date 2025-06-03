@@ -47,11 +47,6 @@ class MainScreenViewModel : ViewModel() {
         }
     }
 
-    /*var kaban_level by mutableStateOf<String>("none")
-        public set
-
-    var url by mutableStateOf<String>("none")
-        public set*/
 
     var kolvo:Int = 0;
 
@@ -63,7 +58,7 @@ class MainScreenViewModel : ViewModel() {
     private val _count4 = balance
     val count4: StateFlow<Int> = MutableStateFlow(0)
 
-    private val _cripto = MutableLiveData<List<User_cripto>>()
+    protected val _cripto = MutableLiveData<List<User_cripto>>()
     val cripto: LiveData<List<User_cripto>> get() = _cripto
 
 

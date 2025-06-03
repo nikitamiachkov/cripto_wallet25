@@ -68,18 +68,10 @@ fun BuyScreen(navController: NavHostController, mapScreenViewModel: BuyScreenVie
         )
     }
 
-    val textSearch = remember { mutableStateOf("") }
+
     val kolvo = mapScreenViewModel.kolvo
 
-    // Наблюдаемое состояние для списка категорий из ViewModel
-
-
-    // Наблюдаемое состояние для списка книг из ViewModel
     val books = mapScreenViewModel.books.observeAsState(emptyList())
-    val books2 = listOf<Cripto>()
-
-    // Состояние для хранения выбранной категории, изначально не выбрана (-1)
-    val selectedCategory = remember { mutableIntStateOf(-1) }
 
     val resultState by mapScreenViewModel.resultState.collectAsState()
 

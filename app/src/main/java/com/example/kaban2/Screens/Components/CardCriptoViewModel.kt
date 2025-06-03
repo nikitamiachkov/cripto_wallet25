@@ -1,16 +1,13 @@
 package com.example.kaban2.Screens.Components
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kaban2.Domain.Constant.supabase
 import com.example.kaban2.Domain.models.Cripto
-import com.example.kaban2.Domain.models.Profile
 import com.example.kaban2.Domain.models.Resources
 import com.example.kaban2.Domain.models.User_cripto
-import com.example.kaban2.Screens.MainScreen.MainScreenViewModel
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.postgrest
@@ -23,7 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class CardCriptoViewModel : ViewModel() {
+class CardCriptoViewModel: ViewModel(){
 
     // UI-состояние, если нужно отображать прогресс или ошибку
     private val _loading = MutableStateFlow(false)
@@ -40,7 +37,7 @@ class CardCriptoViewModel : ViewModel() {
     private val _userMessage = MutableStateFlow<String?>(null)
     val userMessage: StateFlow<String?> = _userMessage
 
-    private val _criptoList = MutableStateFlow<List<User_cripto>>(emptyList())
+    public val _criptoList = MutableStateFlow<List<User_cripto>>(emptyList())
     val criptoList: StateFlow<List<User_cripto>> = _criptoList
 
     val userId = supabase.auth.currentUserOrNull()?.id
