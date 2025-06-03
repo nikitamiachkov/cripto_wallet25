@@ -99,6 +99,24 @@ dependencies {
     //implementation(libs.gotrue.kt)
     //implementation(libs.core)
 
+    // JUnit (4.13.2)
+    testImplementation("junit:junit:4.13.2")
+
+// Kotlin Coroutines Test (1.7.3)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+// Mockito Core (5.2.0)
+    testImplementation("org.mockito:mockito-core:5.2.0")
+
+// Mockito Kotlin (4.1.0)
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+
+// Turbine for Flow testing (1.0.0)
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation(kotlin("test"))
+
 
     // To use the androidx.test.core APIs
     androidTestImplementation("androidx.test:core:1.6.1")
