@@ -1,5 +1,6 @@
 package com.example.kaban2.Screens.MainScreen
 
+import android.R.attr.contentDescription
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -38,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.LiveData
 import com.example.kaban2.Domain.models.Cripto
@@ -62,7 +64,11 @@ fun MainScreen(navController: NavHostController) {
     val balance = viewModel.balance
     val cripto = viewModel.cripto
     val kolvo = viewModel.kolvo
-
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag("Main Screen")
+    ){}
     Scaffold(
         containerColor = Color(0xFF121212),
         bottomBar = {
@@ -73,6 +79,7 @@ fun MainScreen(navController: NavHostController) {
             navController = innerNavController,
             startDestination = BottomNavItem.Main.route,
             modifier = Modifier.padding(innerPadding)
+
         ) {
             composable(BottomNavItem.Main.route) {
                MainScreen2(innerNavController)

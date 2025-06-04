@@ -16,9 +16,11 @@ import org.junit.runner.RunWith
 //import org.robolectric.annotation.Config
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
-import org.robolectric.RobolectricTestRunner
+import org.junit.internal.builders.JUnit4Builder
+import org.junit.runners.JUnit4
 
-@RunWith(RobolectricTestRunner::class)
+
+@RunWith(JUnit4::class)
 @ExperimentalCoroutinesApi
 class CardCriptoViewModelTest {
 

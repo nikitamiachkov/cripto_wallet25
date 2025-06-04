@@ -99,7 +99,7 @@ dependencies {
     //implementation(libs.gotrue.kt)
     //implementation(libs.core)
 
-    // JUnit (4.13.2)
+    /*/ JUnit (4.13.2)
     testImplementation("junit:junit:4.13.2")
 
 // Kotlin Coroutines Test (1.7.3)
@@ -222,7 +222,7 @@ dependencies {
     // Инструменты для Espresso (опционально)
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    testImplementation("org.robolectric:robolectric:4.9")
+*/
 
     // JUnit (4.13.2)
     testImplementation("junit:junit:4.13.2")
@@ -273,6 +273,53 @@ dependencies {
     // Или если используете AndroidX Test
     androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
 
-    testImplementation("org.robolectric:robolectric:4.9")
+
+
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
+
+
+    /*var compose_version = "1.8.2" // или ваша текущая версия
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:$compose_version")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:$compose_version")
+
+    // Навигация (версия должна совпадать с версией Navigation Component)
+    var nav_version = "2.7.7" // актуальная версия Navigation
+    androidTestImplementation ("androidx.navigation:navigation-testing:$nav_version")
+
+    // AndroidX Test
+    androidTestImplementation ("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.6.1")
+
+    // Core KTX и Runtime Compose для TestNavHostController
+    androidTestImplementation ("androidx.core:core-ktx:1.16.0")
+    androidTestImplementation ("androidx.lifecycle:lifecycle-runtime-compose:2.9.0")
+
+
+    androidTestImplementation ("androidx.activity:activity-compose:1.8.0")
+
+    // Compose Testing
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.6.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.6.0")
+
+    // Navigation Testing
+    androidTestImplementation ("androidx.navigation:navigation-testing:2.7.5")
+
+    // AndroidX Test
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+
+
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+    androidTestImplementation ("androidx.test:core:1.5.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+
+    // Compose тестирование
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.6.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.6.0")
+
+    // Навигация (если тестируете навигацию)
+    androidTestImplementation ("androidx.navigation:navigation-testing:2.7.5")*/
 
 }
