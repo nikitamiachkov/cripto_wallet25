@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36" version="27.1.1">
+  <diagram name="Страница — 1" id="bbmf9rJqol4AEm5c_4ce">
+    <mxGraphModel dx="436" dy="612" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_OGj3RtYbM5L0D5uTUmK-4" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=27;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;endArrow=none;startFill=0;" edge="1" parent="1" source="_OGj3RtYbM5L0D5uTUmK-1" target="_OGj3RtYbM5L0D5uTUmK-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_OGj3RtYbM5L0D5uTUmK-1" value="мобильное приложение" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry y="146" width="160" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="_OGj3RtYbM5L0D5uTUmK-2" value="сервер приложений" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="233" y="167" width="138" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="_OGj3RtYbM5L0D5uTUmK-3" value="база данных" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="267" y="40" width="113" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="_OGj3RtYbM5L0D5uTUmK-5" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=64;exitPerimeter=0;entryX=0;entryY=0;entryDx=58;entryDy=61.5;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;endArrow=none;startFill=0;" edge="1" parent="1" source="_OGj3RtYbM5L0D5uTUmK-2" target="_OGj3RtYbM5L0D5uTUmK-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

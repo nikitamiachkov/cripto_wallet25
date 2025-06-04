@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.test.junit4.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -116,5 +117,35 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation(kotlin("test"))
 
+
+    // To use the androidx.test.core APIs
+    androidTestImplementation("androidx.test:core:1.6.1")
+    // Kotlin extensions for androidx.test.core
+    androidTestImplementation("androidx.test:core-ktx:1.6.1")
+
+    // To use the androidx.test.espresso
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    // To use the JUnit Extension APIs
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    // Kotlin extensions for androidx.test.ext.junit
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")
+
+    // To use the Truth Extension APIs
+    androidTestImplementation("androidx.test.ext:truth:1.6.0")
+
+    // To use the androidx.test.runner APIs
+    androidTestImplementation("androidx.test:runner:1.6.2")
+
+    // To use android test orchestrator
+    androidTestUtil("androidx.test:orchestrator:1.5.1")
+
+    testImplementation("org.slf4j:slf4j-simple:2.0.7")
+
+    // Для тестирования LiveData
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+
+    // Или если используете AndroidX Test
+    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
 
 }
