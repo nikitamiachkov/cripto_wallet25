@@ -9,7 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 
 sealed class BottomNavItem(val route: String, val icon: @Composable () -> Unit, val label: String) {
-    object Main : BottomNavItem("main", { Icon(Icons.Default.Home, "Main") }, "Главная")
-    object Buy : BottomNavItem("buy", { Icon(Icons.Default.ShoppingCart, "Buy") }, "Рынок")
-    object Rate : BottomNavItem("rate", { Icon(Icons.Default.Star, "Rate") }, "Топ холдеры")
+    object Main : BottomNavItem("main", { Icon(Icons.Default.Home, contentDescription = "Main") }, "Главная")
+    object Buy : BottomNavItem("buy", { Icon(Icons.Default.ShoppingCart,contentDescription = "Buy") }, "Рынок")
+    object Rate : BottomNavItem("rate", { Icon(Icons.Default.Star, contentDescription = "Rate") }, "Топ холдеры")
 }

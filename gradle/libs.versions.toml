@@ -14,11 +14,17 @@ lifecycleViewmodelCompose = "2.8.7"
 navigationCompose = "2.8.6"
 runtimeLivedata = "1.7.8"
 coilCompose = "2.7.0"
+compose = "1.6.7"
+robolectric = "4.12"
 
 supabase = "2.0.0"
 uiTestJunit4Android = "1.8.2"
 
 [libraries]
+
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 gotrue-kt = { group = "io.github.jan-tennert.supabase", name = "gotrue-kt", version.ref = "supabase" }
 core = { group = "io.github.jan-tennert.supabase", name = "core", version.ref = "supabase" }
 
@@ -39,8 +45,6 @@ androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorClientAndroid" }
 postgrest-kt = { module = "io.github.jan-tennert.supabase:postgrest-kt" }

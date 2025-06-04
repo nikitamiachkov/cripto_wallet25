@@ -53,6 +53,7 @@ import com.example.kaban2.Screens.Components.CardCripto
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.LiveData
 import com.example.kaban2.Domain.Constant.supabase
 
@@ -65,6 +66,7 @@ fun BuyScreen(navController: NavHostController, mapScreenViewModel: BuyScreenVie
             style = MaterialTheme.typography.headlineSmall,
             color = Color.White,
             modifier = Modifier.padding(16.dp)
+                .testTag("Buy Screen")
         )
     }
 
