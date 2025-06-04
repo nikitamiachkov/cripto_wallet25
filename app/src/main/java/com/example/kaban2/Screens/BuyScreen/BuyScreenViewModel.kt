@@ -24,7 +24,6 @@ class BuyScreenViewModel : ViewModel() {
     private val _resultState = MutableStateFlow<ResultState>(ResultState.Loading)
     val resultState: StateFlow<ResultState> = _resultState.asStateFlow()
 
-    // MutableLiveData для хранения списка книг
     private val _books = MutableLiveData<List<Cripto>>()
     val books: LiveData<List<Cripto>> get() = _books
 
@@ -33,11 +32,6 @@ class BuyScreenViewModel : ViewModel() {
 
     var kolvo:Int = 0;
 
-    // MutableLiveData для хранения списка категорий
-    //private val _categories = MutableLiveData<List<Category>>()
-    //val categories: LiveData<List<Category>> get() = _categories
-
-    // Хранит все книги для фильтрации
     private var allBooks: List<Cripto> = listOf()
 
     init {
@@ -53,7 +47,6 @@ class BuyScreenViewModel : ViewModel() {
                 kolvo = allBooks.size
                 Log.d("MainBooks", "Success")
                 Log.d("MainBooks", allBooks.toString())
-                //_books.value = allBooks
 
                 _resultState.value = ResultState.Success("Success")
             } catch (_ex: AuthRestException) {
