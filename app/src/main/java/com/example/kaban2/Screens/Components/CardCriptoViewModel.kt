@@ -163,6 +163,7 @@ if (profileResult3.quantity > 0) {
 
                     }
                 }
+                showMessage("Покупка совершена успешно!")
 
 
 
@@ -208,7 +209,7 @@ val percentChange = (Random.nextInt(-5, 6)) * 0.03  // от -15% до +15%
                                 }
 
 
-
+                                showMessage("Покупка совершена успешно!")
                                 //cripto.copy(price = newPrice)  // создаём новую копию с обновлённой ценой
                             }
 

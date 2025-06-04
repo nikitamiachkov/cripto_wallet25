@@ -26,7 +26,7 @@ class RateScreenViewModel : ViewModel() {
     private val _resultState = MutableStateFlow<ResultState>(ResultState.Loading)
     val resultState: StateFlow<ResultState> = _resultState.asStateFlow()
 
-    // MutableLiveData для хранения списка книг
+
     private val _books = MutableLiveData<List<Profile>>()
     val books: LiveData<List<Profile>> get() = _books
 
@@ -39,8 +39,8 @@ class RateScreenViewModel : ViewModel() {
     //private val _categories = MutableLiveData<List<Category>>()
     //val categories: LiveData<List<Category>> get() = _categories
 
-    // Хранит все книги для фильтрации
-    private var allBooks: List<Profile> = listOf()
+
+    var allBooks: List<Profile> = listOf()
     private var allBooks2: List<Resources> = listOf()
 
     init {
@@ -49,7 +49,7 @@ class RateScreenViewModel : ViewModel() {
     }
 
 
-    private fun loadBooks() {
+    fun loadBooks() {
         _resultState.value = ResultState.Loading
         viewModelScope.launch {
             try {
